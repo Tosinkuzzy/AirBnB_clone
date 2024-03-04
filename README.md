@@ -1,6 +1,6 @@
 This is a team work in this projects called "AirBnB_clone".
-AUTHORS JEROME UDOH and Oluwasegun Olawale BENJAMIN.
-The repo was created by Jerome Udoh with a github name Jubasstech added a contributor by name Oluwasegun Olawale Benjamin.
+AUTHORS KHANOUS Othmane and Adeleye Ayomide Tosin.
+The repo was created by KHANOUS Othmane with a github name Othmane-khan added a contributor by name Adeleye Ayomide Tosin.
 
 About the Projects
 Be pycodestyle compliant!
