@@ -1,77 +1,59 @@
 #!/usr/bin/python3
+"""Module for Base class
+Contains the Base class for the AirBnB clone console.
 """
-Module for serializing and deserializing data
-"""
-import json
-import os
-from models.base_model import BaseModel
-from models.user import User
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.city import City
+
+import uuid
+from datetime import datetime
+from models import storage
 
 
-class FileStorage:
-    """
-    FileStorage class for storing, serializing and deserializing data
-    """
-    __file_path = "file.json"
+class BaseModel:
 
-    __objects = {}
+    """Class for base model of object hierarchy."""
 
-    def new(self, obj):
+    def __init__(self, *args, **kwargs):
+        """Initialization of a Base instance.
+        Args:
+            - *args: list of arguments
+            - **kwargs: dict of key-values arguments
         """
-         Sets an object in the __objects dictionary with a key of 
-         <obj class name>.id.
-        """
-        obj_cls_name = obj.__class__.__name__
 
-        key = "{}.{}".format(obj_cls_name, obj.id)
+        if kwargs is not None and kwargs != {}:
+            for key in kwargs:
+                if key == "created_at":
+                    self.__dict__["created_at"] = datetime.strptime(
+                        kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.__dict__["updated_at"] = datetime.strptime(
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    self.__dict__[key] = kwargs[key]
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
-        FileStorage.__objects[key] = obj
+    def __str__(self):
+        """Returns a human-readable string representation
+        of an instance."""
 
-
-    def all(self):
-        """
-        Returns the __objects dictionary. 
-        It provides access to all the stored objects.
-        """
-        return  FileStorage.__objects
-
+        return "[{}] ({}) {}".\
+            format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
-        """
-        Serializes the __objects dictionary into 
-        JSON format and saves it to the file specified by __file_path.
-        """
-        all_objs = FileStorage.__objects
+        """Updates the updated_at attribute
+        with the current datetime."""
 
-        obj_dict = {}
+        self.updated_at = datetime.now()
+        storage.save()
 
-        for obj in all_objs.keys():
-            obj_dict[obj] = all_objs[obj].to_dict()
+    def to_dict(self):
+        """Returns a dictionary representation of an instance."""
 
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-            json.dump(obj_dict, file)
-
-    def reload(self):
-        """
-        This method deserializes the JSON file
-        """
-        if os.path.isfile(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
-                try:
-                    obj_dict = json.load(file)
-
-                    for key, value in obj_dict.items():
-                        class_name, obj_id = key.split('.')
-
-                        cls = eval(class_name)
-
-                        instance = cls(**value)
-
-                        FileStorage.__objects[key] = instance
-                except Exception:
-                    pass
+        my_dict = self.__dict__.copy()
+        my_dict["__class__"] = type(self).__name__
+        my_dict["created_at"] = my_dict["created_at"].isoformat()
+        my_dict["updated_at"] = my_dict["updated_at"].isoformat()
+        return my_dict
