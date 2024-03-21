@@ -1,76 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Task 6 - Web Static</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="images/x-icon" href="images/icon.png">
-    <link rel="stylesheet" href="styles/4-common.css">
-    <link rel="stylesheet" href="styles/3-header.css">
-    <link rel="stylesheet" href="styles/3-footer.css">
-    <link rel="stylesheet" href="styles/6-filters.css">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/4-common.css" />
+    <link rel="stylesheet" href="styles/3-header.css" />
+    <link rel="stylesheet" href="styles/3-footer.css" />
+    <link rel="stylesheet" href="styles/6-filters.css" />
+    <link rel="icon" href="images/icon.png" />
+    <title>AirBnB Clone</title>
   </head>
   <body>
     <header>
-      <div class="logo">
-      </div>
+      <div class="logo"></div>
     </header>
     <div class="container">
       <section class="filters">
-        <div class="filters-left">
-          <div class="locations">
-            <div class="filter-header">
-              <h3>States</h3>
-              <h4>California, Arizona...</h4>
-            </div>
-            <div class="filter-content">
-              <ul class="popover">
-                <li>
-                  <h2>California:</h2>
-                  <p>San Francisco</p>
-                  <p>Los Altos</p>
-                </li>
-                <li>
-                  <h2>Arizona:</h2>
-                  <p>San Francisco</p>
-                  <p>Los Altos</p>
-                </li>
+        <div class="locations">
+          <h3>States</h3>
+          <h4>California, New York...</h4>
+          <ul class="popover">
+            <li>
+              <h2>California</h2>
+              <ul>
+                <li>Solvang</li>
+                <li>Cambria</li>
               </ul>
-            </div>
-          </div>
-          <div class="amenities">
-            <div class="filter-header">
-              <h3>Amenities</h3>
-              <h4>Internet, Kitchen...</h4>
-            </div>
-            <div class="filter-content">
-              <ul class="popover">
-                <li>
-                  Internet
-                </li>
-                <li>
-                  TV
-                </li>
-                <li>
-                  Kitchen
-                </li>
-                <li>
-                  Iron
-                </li>
-                <li>
-                  Pool
-                </li>
+            </li>
+            <li>
+              <h2>New York:</h2>
+              <ul>
+                <li>lthaca</li>
+                <li>Lake Placid</li>
               </ul>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
-        <div class="filters-right">
-          <button type="submit">Search</button>
+        <div class="amenities">
+          <h3>Amenities</h3>
+          <h4>Internet, Kitchen...</h4>
+          <ul class="popover">
+            <li>Free Wi-Fi</li>
+            <li>Kitchen</li>
+            <li>Storage</li>
+            <li>Laundry</li>
+          </ul>
         </div>
+        <button>Search</button>
       </section>
     </div>
     <footer>
-      Best School
-    </footer> 
+      <p>Best School</p>
+    </footer>
   </body>
 </html>
