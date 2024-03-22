@@ -23,7 +23,7 @@
     border: 1px solid #ff5a5f;
     border-radius: 4px;
 }
-article {
+/* article {
   border: 1px solid #ff5a5f;
   border-radius: 4px;
   display: flex;
@@ -35,7 +35,7 @@ article {
   margin: 20px;
   padding: 20px;
 }
-
+*/
 article > h2 {
   font-size: 30px;
   align-self: center;
